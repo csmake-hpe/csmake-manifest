@@ -21,13 +21,14 @@ package=Create the csmake-manifest package
 **sequences=
    clean -> package: create the csmake-manifest install package
 **default=clean -> package
+**requires=csmake-swak, csmake-packager
 
 [metadata@csmake-manifest]
 name=csmake-manifest
 version=1.0.0
 description=Library of csmake modules to create build manifests
 about=The core csmake contains minimal support for build manifests
-packager=HP CloudSystem RIDE Team  <hpcloud-cs-ride@hpe.com>
+packager=Jeremiah Patterson <jerpat@hpe.com>
 manufacturer=Hewlett Packard Enterprise
 depends=python (>= 2.6), csmake, python-yaml
 recommends=
@@ -40,26 +41,46 @@ classifiers=
     Programming Language :: Python :: 2
     Programming Language :: Python :: 2.6
     Programming Language :: Python :: 2.7
-    License :: Other/Proprietary License
+    License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 **files=
     <CsmakeModules (python:csmake-modules)> CsmakeModules/*.py
 #    <CsmakeModules (python:csmake-modules)> CsmakeModules/*.py,
 #    <CsmakeManifest (python:csmake-modules)> CsmakeManifest/*.py
 
 [copyright@csmake-copyright]
-disclaimer=This software was produced for and by Hewlett-Packard Enterprise
-   All rights are reserved.
-license=non-free
+disclaimer=
+ This program is free software: you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation, either version 3 of the License, or (at your
+ option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian based systems see: /usr/share/common-licenses
+license=GPLv3
 holder=Hewlett Packard Enterprise
-years=2014-2016
-comment=If csmake is made public, this copyright would need to change to
-   reflect that
+years=2014-2017
 
+[AsciiGPGSignature@default-ascii-sign]
 [DebianPackage@debian-csmake-manifest]
-package-version=1.0
+package-version=1.1
 maps=csmake-manifest-installs
 result=%(RESULTS)s/debpackage
 debian-directory-copyright=csmake-copyright
+#signer=default-ascii-sign
+
+[Signature@default-sign]
+[RpmPackage@rpm-csmake-manifest]
+package-version=1.0
+maps=csmake-manifest-installs
+result=%(RESULTS)s/rpmfile
+signers=default-sign
 
 [versioning@snapshot-version]
 designation=snapshot
@@ -105,5 +126,5 @@ description=Create and package a csmake release candidate
 
 [command@default]
 description=Create and package a csmake release
-00=csmake-manifest, debian-csmake-manifest
+00=csmake-manifest, debian-csmake-manifest & rpm-csmake-manifest
 
